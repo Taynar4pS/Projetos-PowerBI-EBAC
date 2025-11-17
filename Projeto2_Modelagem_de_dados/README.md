@@ -39,6 +39,9 @@ Relacionamentos criados:
 - `Vendas[ProdutoID]` ➝ `Produto[ProdutoID]`
 - `Vendas[VendedorID]` ➝ `Metas[VendedorID]`
 
+<img width="797" height="138" alt="image" src="https://github.com/user-attachments/assets/2bc21004-9bb9-444f-bda5-b00d5c4cf4c8" />
+
+
 #### 📌 Cardinalidade
 - **Vendas → Produtos:** Muitos → Um
 - **Vendas → Metas:** Muitos → Um
