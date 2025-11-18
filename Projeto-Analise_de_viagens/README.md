@@ -145,25 +145,25 @@ As principais métricas desenvolvidas incluem:
 ```DAX
 Total Viagens = COUNT(Fato_Viagens[travel_id])
 ```
----
-
 * Total de Receita
+```DAX
 Receita Total = SUM(Fato_Viagens[total_price])
-Ticket Médio
-
-* Ticket Médio = DIVIDE([Receita Total], [Total Viagens])
-
+```
+* Ticket Médio
+```DAX
+Ticket Médio = DIVIDE([Receita Total], [Total Viagens])
+```
 
 * Qtd. Clientes Ativos
-
+```DAX
 Clientes Ativos = DISTINCTCOUNT(Fato_Viagens[client_id])
-
+```
 
 * Viagens por Origem/Destino
-
+```DAX
 Viagens por Origem = COUNT(Fato_Viagens[airport_origin])
-
-##🔍 Principais Insights Obtidos
+```
+## 🔍 Principais Insights Obtidos
 
 - Identificação dos aeroportos mais movimentados (origem e destino).
 
@@ -175,7 +175,8 @@ Viagens por Origem = COUNT(Fato_Viagens[airport_origin])
 
 - Impacto da modelagem no desempenho e precisão das análises.
 
-##📁 Estrutura do Repositório
+## 📁 Estrutura do Repositório
+
 Projeto-Analise_de_Viagens/
 │
 ├── dataset/
