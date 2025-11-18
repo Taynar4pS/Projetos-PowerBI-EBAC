@@ -57,7 +57,9 @@ Após importar os arquivos CSV, os relacionamentos devem ser criados na *Visuali
 A cardinalidade correta é crucial para a precisão dos cálculos.
 
 <img width="693" height="144" alt="image" src="https://github.com/user-attachments/assets/1f6c51ab-8107-4720-a52b-fd8af685fe60" />
+
 ---
+
 ### 4. Gerenciamento dos Relacionamentos e Identificação de Tabelas
 
 <img width="701" height="217" alt="image" src="https://github.com/user-attachments/assets/0fd98bd8-b885-46fb-9fce-4650d51619dd" />
