@@ -57,8 +57,16 @@ Após importar os arquivos CSV, os relacionamentos devem ser criados na *Visuali
 A cardinalidade correta é crucial para a precisão dos cálculos.
 
 <img width="693" height="144" alt="image" src="https://github.com/user-attachments/assets/1f6c51ab-8107-4720-a52b-fd8af685fe60" />
-
-### 4. Relacionamentos entre tabelas
+---
+### 4. Gerenciamento dos Relacionamentos e Identificação de Tabelas
 
 <img width="701" height="217" alt="image" src="https://github.com/user-attachments/assets/0fd98bd8-b885-46fb-9fce-4650d51619dd" />
+
+## 4.1 Configurações de Relacionamento
+Resolução de Ambiguidade (Aeroportos):
+* A tabela airport será usada para Origem e Destino.
+* O relacionamento airport $\leftrightarrow$ travel para Origem deve estar Ativo.
+* O relacionamento airport $\leftrightarrow$ travel para Destino deve ser criado, mas Inativo.
+* Para analisar o destino, será necessário usar a função USERELATIONSHIP no DAX.
+Chaves: Garanta que as colunas de chave primária (airport_id, id) estejam conectadas às chaves estrangeiras (airport_origin, client_id).
 
