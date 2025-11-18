@@ -1,78 +1,189 @@
-# ✈️ Modelagem de Dados em Power BI: Análise de Viagens
+# 📊 Projeto de Análise de Viagens — Power BI
 
-## 📄 Visão Geral do Projeto
-
-Este projeto é uma **atividade prática** do curso de **Power BI da EBAC** (Escola Britânica de Artes Criativas e Tecnologia).
-
-Ele demonstra a importância da **Modelagem de Dados** no **Power BI** para garantir a integridade, a confiabilidade e o desempenho otimizado em análises de negócios. Utilizaremos dados transacionais (viagens) e dados descritivos (clientes, aeroportos, destinos) para construir um modelo **esquema *Star*** (Estrela), que é ideal para *Business Intelligence* (BI).
-
-O cenário foca na análise de **viagens**, conectando clientes, aeroportos de origem e destino, e informações detalhadas sobre as transações.
+Este projeto tem como objetivo analisar dados de viagens utilizando o Power BI, aplicando boas práticas de modelagem de dados, relacionamento entre tabelas e criação de métricas e visualizações que permitam entender o comportamento dos clientes, aeroportos e destinos.
 
 ---
 
-## 💾 Conjuntos de Dados
+## 🚀 Objetivo do Projeto
 
-Quatro arquivos CSV foram fornecidos para a atividade:
+O propósito principal é transformar uma base de dados bruta (Mockaroo) em um modelo analítico consistente, permitindo:
 
-| Arquivo | Descrição | Colunas-Chave Principais | Tipo de Tabela |
-| :--- | :--- | :--- | :--- |
-| `airport.csv` | Lista de Aeroportos. | `airport_id` | Dimensão |
-| `client.csv` | Lista de Clientes. | `id` | Dimensão |
-| `destination.csv` | Destinos populares e informações adicionais. | `travel_id` | Dimensão |
-| `travel.csv` | Dados das viagens compradas (Transações). | `travel_id` | Fato |
+- Análises claras sobre viagens, clientes e aeroportos.  
+- Métricas de desempenho confiáveis.  
+- Visualizações intuitivas e estruturadas.  
+- Um modelo de dados robusto e escalável.
 
 ---
 
-## 🚀 Passo a Passo da Atividade
+## 🧩 Conjuntos de Dados Utilizados
 
-### 1. Contextualização e Importância da Modelagem de Dados
+Os arquivos utilizados foram gerados no **Mockaroo** e importados para o Power BI:
 
-* **Explicação:** A modelagem de dados é fundamental, pois define como as tabelas se conectam e como os dados devem ser agregados e filtrados.
-* **Benefícios:** Uma boa modelagem, como a estrutura *Star Schema*, **otimiza o desempenho** (consultas mais rápidas), **melhora a confiabilidade** (cálculos corretos e sem duplicação) e **evita erros interpretativos**.
-* **Cenário:** Conectar a **tabela Fato (Viagens)** com as **tabelas Dimensão (Clientes, Aeroportos)** permite análises cruzadas precisas, como o *Total Price* (Fato) pelo *Gender* (Dimensão Cliente).
+### **1. airport.csv**  
+Contém a lista de aeroportos:  
+- airport_id  
+- airport_name  
+- airport_city  
+- airport_country  
+- latitude  
+- longitude  
+
+### **2. client.csv**  
+Lista de clientes:  
+- id  
+- client_name  
+- gender  
+- city  
+- country  
+
+### **3. destination.csv**  
+Lista de destinos populares:  
+- travel_id  
+- airport  
+- cat
+### **4. travel.csv**  
+Dados das viagens realizadas:  
+- travel_id  
+- airport_origin  
+- airport_destination  
+- purchase_date  
+- travel_date  
+- payment_method  
+- total_price  
+- currency_name  
+- client_id  
 
 ---
 
-### 2. Carregamento e Estabelecimento dos Relacionamentos
+## 🛠️ Como Replicar o Projeto
 
-Após importar os arquivos CSV, os relacionamentos devem ser criados na *Visualização de Modelo* do Power BI.
+### **1️⃣ Faça o download dos arquivos .csv**
 
-**Modelo de Relacionamento (Esquema Estrela):**
+Coloque todos os arquivos em uma mesma pasta:  
+* airport.csv
+* client.csv
+* destination.csv
+* travel.csv
 
 
-* **Viagens $\leftrightarrow$ Clientes:**
-    * Chaves: `travel.client_id` **$\rightarrow$** `client.id`
-* **Viagens $\leftrightarrow$ Aeroportos (Origem):**
-    * Chaves: `travel.airport_origin` **$\rightarrow$** `airport.airport_id`
-* **Viagens $\leftrightarrow$ Aeroportos (Destino):**
-    * Chaves: `travel.airport_destination` **$\rightarrow$** `airport.airport_id`
-    * *Nota: O relacionamento de Destino será criado, mas mantido **Inativo** para evitar ambiguidade (caminhos múltiplos).*
-* **Viagens $\leftrightarrow$ Destinos Populares (Opcional):**
-    * Chaves: `travel.travel_id` **$\rightarrow$** `destination.travel_id`
+### **2️⃣ Abra o Power BI Desktop**  
+Vá em:  
+**Página Inicial → Obter Dados → Texto/CSV**
+
+Importe cada um dos arquivos.
+
+### **3️⃣ Organize e nomeie as tabelas**  
+Recomenda-se manter os nomes:  
+- *Aeroportos*  
+- *Clientes*  
+- *Destinos*  
+- *Viagens*  
+
+### **4️⃣ Configure os relacionamentos**  
+Após carregar tudo, abra **Modelagem → Exibição de Modelo** para montar o diagrama conforme descrito abaixo.
 
 ---
 
-### 3. Definição das Cardinalidades e Direção
+## 🧱 Modelagem de Dados
 
-A cardinalidade correta é crucial para a precisão dos cálculos.
+A modelagem segue o padrão **estrela (Star Schema)**, garantindo clareza, performance e consistência nas análises.
 
-<img width="693" height="144" alt="image" src="https://github.com/user-attachments/assets/1f6c51ab-8107-4720-a52b-fd8af685fe60" />
+### **🔹 Tabela Fato**
+
+**Fato_Viagens**  
+Contém todos os eventos das viagens realizadas (transações).
+
+### **🔸 Tabelas Dimensão**
+
+- **Dim_Clientes**  
+- **Dim_Aeroportos**  
+- **Dim_Destinos**  
 
 ---
 
-### 4. Gerenciamento dos Relacionamentos e Identificação de Tabelas
+## 🔗 Relacionamentos Criados
 
-<img width="701" height="217" alt="image" src="https://github.com/user-attachments/assets/0fd98bd8-b885-46fb-9fce-4650d51619dd" />
+### ✔ Viagens → Clientes  
+**Muitos para Um**  
+Chave: `client_id`  
+> Um cliente pode fazer várias viagens.
 
-## 4.1 Configurações de Relacionamento
-Resolução de Ambiguidade (Aeroportos):
-* A tabela airport será usada para Origem e Destino.
-* O relacionamento airport $\leftrightarrow$ travel para Origem deve estar Ativo.
-* O relacionamento airport $\leftrightarrow$ travel para Destino deve ser criado, mas Inativo.
-* Para analisar o destino, será necessário usar a função USERELATIONSHIP no DAX.
+### ✔ Viagens → Aeroportos (Origem e Destino)  
+**Muitos para Um**  
+Chave: `airport_id`  
+> Várias viagens podem partir/chegar ao mesmo aeroporto.
 
-<img width="727" height="450" alt="image" src="https://github.com/user-attachments/assets/2474eb2e-f193-406c-a293-12fb3cd6e601" />
+### ✔ Aeroportos → Destinos (Opcional)  
+**Muitos para Um**  
+Chave: Cidade/País (dependendo da granularidade)  
+> Relacionamento auxiliar para análises geográficas.
+
+---
+
+## ⚠️ Importância da Cardinalidade Correta
+
+Cardinalidades erradas podem causar:
+
+- **Duplicação de valores**  
+- **Filtros comportando-se incorretamente**  
+- **Medidas com cálculos distorcidos**  
+- **Resultados inconsistentes nos dashboards**
+
+A configuração correta garante:
+
+- Propagação adequada de filtros  
+- Relações claras entre entidades  
+- Desempenho superior no Power BI  
+
+---
+
+## 📏 Métricas Criadas
+
+As principais métricas desenvolvidas incluem:
+
+- **Total de Viagens**  
+```DAX
+Total Viagens = COUNT(Fato_Viagens[travel_id])
+```
+---
+
+* Total de Receita
+Receita Total = SUM(Fato_Viagens[total_price])
+Ticket Médio
+
+* Ticket Médio = DIVIDE([Receita Total], [Total Viagens])
 
 
-Chaves: Garanta que as colunas de chave primária (airport_id, id) estejam conectadas às chaves estrangeiras (airport_origin, client_id).
+* Qtd. Clientes Ativos
 
+Clientes Ativos = DISTINCTCOUNT(Fato_Viagens[client_id])
+
+
+* Viagens por Origem/Destino
+
+Viagens por Origem = COUNT(Fato_Viagens[airport_origin])
+
+##🔍 Principais Insights Obtidos
+
+- Identificação dos aeroportos mais movimentados (origem e destino).
+
+- Análise do comportamento de compra dos clientes: datas, métodos de pagamento, sazonalidade.
+
+- Mapa com concentração geográfica dos aeroportos.
+
+- Categorias e destinos mais buscados no dataset.
+
+- Impacto da modelagem no desempenho e precisão das análises.
+
+##📁 Estrutura do Repositório
+Projeto-Analise_de_Viagens/
+│
+├── dataset/
+│   ├── airport.csv
+│   ├── client.csv
+│   ├── destination.csv
+│   └── travel.csv
+│
+├── modelo_de_dados.png   # Captura do diagrama
+├── dashboard.png         # Print do relatório
+└── Projeto_Analise_Viagens.pbix
