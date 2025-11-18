@@ -71,5 +71,8 @@ Resolução de Ambiguidade (Aeroportos):
 * O relacionamento airport $\leftrightarrow$ travel para Destino deve ser criado, mas Inativo.
 * Para analisar o destino, será necessário usar a função USERELATIONSHIP no DAX.
 
+<img width="727" height="450" alt="image" src="https://github.com/user-attachments/assets/2474eb2e-f193-406c-a293-12fb3cd6e601" />
+
+
 Chaves: Garanta que as colunas de chave primária (airport_id, id) estejam conectadas às chaves estrangeiras (airport_origin, client_id).
 
